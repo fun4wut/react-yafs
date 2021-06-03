@@ -1,13 +1,13 @@
 import ReactReconciler from 'react-reconciler'
 import emptyObject from 'fbjs/lib/emptyObject'
-import { ComponentType } from '../constants'
+import * as ComponentType from '../constants'
 import { BaseInst } from '../instance/base'
 import DirectoryInst from '../instance/directory'
 import FileInst from '../instance/file'
 import FSContainer from '../container'
 
 export const FSReconciler = ReactReconciler<
-    ComponentType, // type
+    string, // type
     any, // props
     FSContainer, // container
     BaseInst, // instance
@@ -27,10 +27,10 @@ export const FSReconciler = ReactReconciler<
     createInstance(type, props, rootContainer) {
         console.log(`Create instance, type is ${type}`)
         switch (type) {
-            case ComponentType.FILE:
+            case ComponentType.File:
                 return new FileInst(rootContainer, props)
 
-            case ComponentType.DIRECTORY:
+            case ComponentType.Directory:
                 return new DirectoryInst(rootContainer, props)
 
             default:

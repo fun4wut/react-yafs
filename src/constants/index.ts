@@ -1,4 +1,2 @@
-export enum ComponentType {
-    FILE = 'file',
-    DIRECTORY = 'directory'
-}
+export const File = 'File'
+export const Directory = 'Directory'

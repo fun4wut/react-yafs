@@ -1,4 +1,5 @@
 import React from "react"
+import { File, Directory } from "./constants"
 import FSContainer from "./container"
 import { FSReconciler } from "./reconciler"
 
@@ -12,9 +13,9 @@ const ReactFS = {
 }
 
 const App = () => (
-    <directory name="aes">
-        <file name="cbc"/>
-    </directory>
+    <Directory name="aes">
+        <File name="cbc"/>
+    </Directory>
 )
 
 
