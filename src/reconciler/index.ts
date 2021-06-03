@@ -52,12 +52,13 @@ export const FSReconciler = ReactReconciler<
     appendChild(parent, child) {
         parent.appendChild(child)
     },
-    clearContainer(container) {
+    clearContainer(_container) {
         
     },
-    appendChildToContainer(_container, child) {
+    appendChildToContainer(container, child) {
         if (child instanceof BaseInst) {
-            child.doCreateSelf() // 最顶部的元素，它不会执行appendInitialChild，所以需要在这里执行创建操作
+            // 最顶部的元素，它不会执行appendInitialChild，所以需要在这里执行添加操作
+            container.finalTask = () => child.doCreateSelf().then(child.taskChain)
         }
     },
     now: Date.now,

@@ -5,16 +5,22 @@ import { FSReconciler } from "./reconciler"
 
 
 const ReactFS = {
-    render(element: React.ReactNode, rootPath: string) {
+    async render(element: React.ReactNode, rootPath: string) {
         const rootContainer = new FSContainer(rootPath)
         const newRoot = FSReconciler.createContainer(rootContainer, 0, false, null)
         FSReconciler.updateContainer(element, newRoot, null, () => {})
+        await rootContainer.finalTask()
     }
 }
 
 const App = () => (
     <Directory name="aes">
-        <File name="cbc"/>
+        <File name="cbc">
+            abcd1234
+        </File>
+        <Directory name="rua">
+
+        </Directory>
     </Directory>
 )
 

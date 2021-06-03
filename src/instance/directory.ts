@@ -1,12 +1,13 @@
 import fs from 'fs-extra'
-import { BaseInst } from "./base"
+import { BaseInst, pathStore } from "./base"
 
 export default class DirectoryInst extends BaseInst {
-    doCreateSelf() {
-        fs.ensureDir(this.fullPath)
+    async doCreateSelf() {
+        pathStore.appendPath(this.props.name)
+        fs.ensureDir(pathStore.current)
     }
     appendChild(child: BaseInst) {
         console.log('directory append child')
-        child.doCreateSelf()
+        this.taskChain = () => child.doCreateSelf().then(child.taskChain)
     }
 }
