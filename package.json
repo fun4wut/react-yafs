@@ -1,0 +1,26 @@
+{
+  "name": "react-yafs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "noRun": "esbuild src/index.tsx --format=esm",
+    "dev": "esbuild src/index.tsx --bundle --platform=node | node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fun4wut",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.11",
+    "@types/node": "^15.6.1",
+    "@types/react": "^17.0.8",
+    "@types/react-reconciler": "^0.26.1",
+    "esbuild": "^0.12.5"
+  },
+  "dependencies": {
+    "fbjs": "^3.0.0",
+    "fs-extra": "^10.0.0",
+    "react": "^17.0.2",
+    "react-reconciler": "^0.26.2"
+  }
+}
