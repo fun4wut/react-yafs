@@ -15,6 +15,9 @@ const ReactFS = {
 
 const App = () => (
     <Directory name="aes">
+        <Directory name="mmp">
+            <File name="poke" />
+        </Directory>
         <File name="cbc">
             abcd1234
         </File>

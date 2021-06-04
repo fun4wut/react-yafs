@@ -1,6 +1,36 @@
 # React-FS
 使用React语法（JSX）来描述文件目录结构
 
+举个例子🌰
+```jsx
+const App = () => (
+    <Directory name="aes">
+        <Directory name="mmp">
+            <File name="poke" />
+        </Directory>
+        <File name="cbc">
+            abcd1234
+        </File>
+        <Directory name="rua" />
+    </Directory>
+)
+
+ReactFS.render(<App />, process.cwd())
+```
+
+将会在 `./aes` 中创建如下的结构
+```
+❯ tree aes
+aes
+├── cbc
+├── mmp
+│   └── poke
+└── rua
+
+2 directories, 2 files
+```
+其中 `./aes/cbc` 中内容即为 `abcd1234`
+
 ## 知识点
 - Component, Element, Instances三者之间的关系
   - Instance是实际渲染中，渲染出来的东西（类比于DOM元素）
@@ -22,5 +52,5 @@
   > 一个目录下可能会有多个文件，这种情况下，Promise链的拼接就成了问题，需要要避免同级的Promise链被顶掉
 
 ## 另外的实现思路
-- append Child时什么也不做，等到准备render的时候再从顶层往下正向的创建，这样做比较简单
-- create Instance时真的创建文件（使用 `memfs` 来减轻IO负担），等到append Child时，再把文件移到正确的位置，最后render时dump出来（通过 `unionfs` ）
+- [x] append Child时什么也不做，等到准备render的时候再从顶层往下正向的创建，这样做比较简单
+- [ ] create Instance时真的创建文件（使用 `memfs` 来减轻IO负担），等到append Child时，再把文件移到正确的位置，最后render时dump出来（通过 `unionfs` ）
