@@ -9,7 +9,7 @@ const ReactFS = {
         const rootContainer = new FSContainer(rootPath)
         const newRoot = FSReconciler.createContainer(rootContainer, 0, false, null)
         FSReconciler.updateContainer(element, newRoot, null, () => {})
-        await rootContainer.finalTask()
+        await rootContainer.dumpFS()
     }
 }
 

@@ -1,14 +1,14 @@
 import fs from 'fs-extra'
-import { BaseInst, pathStore } from "./base"
+import path from 'path'
+import { BaseInst } from "./base"
 
 export class FileInst extends BaseInst {
-    async doCreateSelf() {
-        pathStore.appendPath(this.props.name)
-        fs.ensureFileSync(pathStore.current)
+    async doCreateSelf(prefix: string) {
+        this.appendPath(prefix)
+        fs.ensureFile(this.fullPath)
     }
     appendChild(child: Buffer) {
         console.log('file append child')
-        const childTask = () => fs.writeFile(pathStore.current, child)
-        this.localTasks.push(childTask)
+        this.childrenInst.push(child)
     }
 }

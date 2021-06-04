@@ -59,7 +59,7 @@ export const FSReconciler = ReactReconciler<
     appendChildToContainer(container, child) {
         if (child instanceof BaseInst) {
             // 最顶部的元素，它不会执行appendInitialChild，所以需要在这里执行添加操作
-            container.finalTask = concatTask(child.doCreateSelf, concurrentTasks(child.localTasks))
+            container.topInst = child
         }
     },
     now: Date.now,

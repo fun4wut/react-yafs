@@ -1,17 +1,15 @@
 import fs from 'fs-extra'
-import { concatTask, concurrentTasks } from '../utils/task'
-import { BaseInst, pathStore } from "./base"
+import path from 'path'
+import { BaseInst } from "./base"
 
 export class DirectoryInst extends BaseInst {
-    async doCreateSelf() {
-        console.log('?:', this)
-        pathStore.appendPath(this.props.name)
-        fs.ensureDir(pathStore.current)
+    async doCreateSelf(prefix: string) {
+        this.appendPath(prefix)
+        console.log(`create dir, path: ${this.fullPath}`)
+        fs.ensureDir(this.fullPath)
     }
     appendChild(child: BaseInst) {
         console.log('directory append child')
-        // 拿到子元素的task，并拼接
-        const childTask = concatTask(child.doCreateSelf, concurrentTasks(child.localTasks))
-        this.localTasks.push(childTask)
+        this.childrenInst.push(child)
     }
 }
