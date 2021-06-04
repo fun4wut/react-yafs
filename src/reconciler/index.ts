@@ -2,9 +2,10 @@ import ReactReconciler from 'react-reconciler'
 import emptyObject from 'fbjs/lib/emptyObject'
 import * as ComponentType from '../constants'
 import { BaseInst } from '../instance/base'
-import DirectoryInst from '../instance/directory'
-import FileInst from '../instance/file'
+import { DirectoryInst } from '../instance/directory'
+import { FileInst } from '../instance/file'
 import FSContainer from '../container'
+import { concatTask, concurrentTasks } from '../utils/task'
 
 export const FSReconciler = ReactReconciler<
     string, // type
@@ -58,7 +59,7 @@ export const FSReconciler = ReactReconciler<
     appendChildToContainer(container, child) {
         if (child instanceof BaseInst) {
             // 最顶部的元素，它不会执行appendInitialChild，所以需要在这里执行添加操作
-            container.finalTask = () => child.doCreateSelf().then(child.taskChain)
+            container.finalTask = concatTask(child.doCreateSelf, concurrentTasks(child.localTasks))
         }
     },
     now: Date.now,

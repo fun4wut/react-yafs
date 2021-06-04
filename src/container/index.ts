@@ -4,5 +4,5 @@ export default class FSContainer {
     constructor(public path: string) {
         fs.ensureDirSync(path)
     }
-    finalTask: () => Promise<void>
+    finalTask: Task
 }

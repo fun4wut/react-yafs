@@ -18,9 +18,7 @@ const App = () => (
         <File name="cbc">
             abcd1234
         </File>
-        <Directory name="rua">
-
-        </Directory>
+        <Directory name="rua" />
     </Directory>
 )
 

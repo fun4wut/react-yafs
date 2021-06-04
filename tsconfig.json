@@ -4,8 +4,6 @@
         "target": "es2020",
         "esModuleInterop": true,
         "jsx": "preserve",
-        "strictFunctionTypes": true,
-        "sourceMap": true
     },
     "exclude": [
         "node_modules",

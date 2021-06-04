@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "noRun": "esbuild src/index.tsx --format=esm",
-    "dev": "esbuild src/index.tsx --bundle --platform=node | node",
+    "build": "esbuild ./src/**/* --platform=node --outdir=dist",
+    "prestart": "esbuild src/index.tsx --bundle --platform=node > tmp.js",
+    "start": "node tmp.js",
+    "clean": "rm -rf ./aes ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "fun4wut",
